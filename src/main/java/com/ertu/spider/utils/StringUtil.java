@@ -13,10 +13,10 @@ public class StringUtil {
 
     public static String getResultByReg(String str, String reg){
         String result = "";
-        Pattern pattern = Pattern.compile(reg);
-        Matcher matcher = pattern.matcher(str);
+        Pattern pattern = Pattern.compile(str);
+        Matcher matcher = pattern.matcher(reg);
         if (matcher.find()){
-            result = matcher.group(1);
+            result = matcher.group(0);
         }
         return result;
     }
