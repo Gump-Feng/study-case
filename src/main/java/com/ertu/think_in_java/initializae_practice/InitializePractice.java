@@ -18,11 +18,11 @@ public class InitializePractice {
         initializePractice.print();
     }
 
-    public void print(){
+    public void print() {
         System.out.println(str);
     }
 
-    public static void add(){
+    public static void add() {
         System.out.println("add方法运行");
     }
 }

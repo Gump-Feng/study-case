@@ -26,7 +26,7 @@ public class Server {
             this.serverSocket = new ServerSocket(port);
             System.out.println("服务端启动成功！！！");
         } catch (Exception e) {
-            System.out.println("服务端启动失败！！！\n失败原因："+e.getMessage());
+            System.out.println("服务端启动失败！！！\n失败原因：" + e.getMessage());
         }
     }
 

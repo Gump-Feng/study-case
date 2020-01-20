@@ -9,12 +9,12 @@ import org.junit.Test;
 public class ThreadTest {
 
     @Test
-    public void mulityThread(){
+    public void mulityThread() {
         int i = 10;
 
     }
 
-    public void threadTest(int i){
+    public void threadTest(int i) {
         System.out.println(i);
     }
 

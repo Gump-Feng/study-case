@@ -1,7 +1,6 @@
 package com.ertu.spider.dynamic_crawler;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ertu.spider.utils.AesUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
@@ -16,17 +15,22 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 /**
- * @author hxf
- * @date 2019/10/7 14:00
+ * @author ：hxf
+ * @date ：Created in 2019/9/24 12:55
+ * @description: boss招聘的公司职位抓取
  */
+@Service
 public class YiDong {
+
     private static Logger logger = LoggerFactory.getLogger(YiDong.class);
+
     public static void main(String[] args) throws Exception {
         String phone = "18335440228";
         CookieStore cookieStore = new BasicCookieStore();
@@ -104,8 +108,8 @@ public class YiDong {
         CloseableHttpClient client1 = HttpClientBuilder.create().setDefaultCookieStore(cookieStore).build();
         HttpGet httpRequest1 = new HttpGet("https://login.10086.cn/needVerifyCode.htm?" +
                 "accountType=01&" +
-                "account="+phone+"&" +
-                "timestamp="+System.currentTimeMillis());
+                "account=" + phone + "&" +
+                "timestamp=" + System.currentTimeMillis());
 
         httpRequest1.setHeader("Accept", "application/json, text/javascript, */*; q=0.01");
         httpRequest1.setHeader("X-Requested-With", "XMLHttpRequest");
@@ -148,9 +152,9 @@ public class YiDong {
         CloseableHttpResponse execute2 = client2.execute(httpRequest2);
         String body2 = EntityUtils.toString(execute2.getEntity());
 
-        if ("true".equals(body2)){
+        if ("true".equals(body2)) {
             logger.info("check成功");
-        }else {
+        } else {
             logger.error("check失败");
         }
 
@@ -180,9 +184,9 @@ public class YiDong {
         JSONObject parseObject = JSONObject.parseObject(body3);
         String token = parseObject.getString("result");
 
-        if (body3.contains("0000")){
+        if (body3.contains("0000")) {
             logger.info("loadToken成功");
-        }else {
+        } else {
             logger.error("loadToken失败");
         }
 
@@ -192,7 +196,7 @@ public class YiDong {
         List<NameValuePair> nameValuePairs4 = new ArrayList<>();
         nameValuePairs4.add(new BasicNameValuePair("userName", phone));
         nameValuePairs4.add(new BasicNameValuePair("type", "01"));
-        nameValuePairs4.add(new BasicNameValuePair("channelID", "12034"));
+        nameValuePairs4.add(new BasicNameValuePair("channelID", "12003"));
         HttpEntity entity4 = EntityBuilder.create().setParameters(nameValuePairs4).build();
         httpRequest4.setEntity(entity4);
 
@@ -213,16 +217,16 @@ public class YiDong {
         CloseableHttpResponse execute4 = client4.execute(httpRequest4);
         String body4 = EntityUtils.toString(execute4.getEntity());
         logger.info("cookie信息为：{}", cookieStore.getCookies().toArray());
-        if ("0".equals(body4)){
+        if ("0".equals(body4)) {
             logger.info("验证码发送成功");
-        }else {
+        } else {
             logger.error("验证码发送失败");
         }
 
         //3、过度链接
         CloseableHttpClient client5 = HttpClientBuilder.create().setDefaultCookieStore(cookieStore).build();
         HttpGet httpRequest5 = new HttpGet("https://login.10086.cn/sendflag.htm?" +
-                "timestamp="+System.currentTimeMillis());
+                "timestamp=" + System.currentTimeMillis());
 
         httpRequest5.setHeader("Accept", "image/webp,image/apng,image/*,*/*;q=0.8");
         httpRequest5.setHeader("Connection", "keep-alive");
@@ -239,14 +243,13 @@ public class YiDong {
 
         String randCode = new Scanner(System.in).next();
         //4、账号验证
-        String rsaStrByPassword = AesUtils.getRsaStrByPassword("213000");
         CloseableHttpClient client6 = HttpClientBuilder.create().setDefaultCookieStore(cookieStore).build();
         HttpGet httpRequest6 = new HttpGet("https://login.10086.cn/login.htm?" +
                 "accountType=01&" +
-                "account="+phone+"&" +
-                "password=NdRLcJboQnMWl2Q9jpBAQ+gHeui16UwKCMykMYZDmH4emu34Fsu4njLGCSynezX8bzYa2G/KBPtHAVrzs3tSQkDvoYk02yckk2pp3mJe2YrCsaOt13rvZoNOh3aBbfCDGfJln5tGOgVuG72wnr2gMBson/iUecG9JUQgjQQqL+W4RcNIqms2tWTi6qSxP8EpFVqAygjoEkpXTWvjgYzuq4V4tGggSJTe17sRIwm3jd2z8DHT0s7mosWTTzjAGTI78oGMIuQVQ0MmuGZvGQCat+0LswH9qYjax7Q4wHiNuHYjvZR2OIESTZi4DD2IALzjyiuT8Q5MyEmKf8vUVqCwcg==&" +
+                "account=" + phone + "&" +
+                "password=cRIbD%2BIccQvTxMaNYcuNHhCrHdaz6beTREVK9WfJHPv%2FC5u%2BfwYfnGrcjHfpTb3PHET0uvWErxtovYw8vWS2seIusRJ8g1%2B43QHs4E7EOtBIpD1T%2BNayPhHssP5b8o6SXM%2ByAPAU6NP5Y9pIrJugi9AHHW2cfH6zkQY9pa%2B09uw1ApiNAAZlc28%2FQOYr%2BeQGpZisa3x8Y8ZsNn%2FFgTIaikv%2FYshckqeFf%2BuAn4GI6k22HYMWebrTujygBSvphMieqK8IoRW4%2BI0Km7LlEzPLJxcHFI37Uo%2FHLhiyv37pytGmn4%2FkrmnclANrFv4H3%2Fx5rRhoQ%2FqCJJP37Ux41k9tjA%3D%3D&" +
                 "pwdType=01&" +
-                "smsPwd="+randCode+"&" +
+                "smsPwd=" + randCode + "&" +
                 "inputCode=&" +
                 "backUrl=https%3A%2F%2Fshop.10086.cn%2Fi%2F&" +
                 "rememberMe=0&" +
@@ -271,16 +274,16 @@ public class YiDong {
         JSONObject jsonObject = JSONObject.parseObject(body6);
         String desc = jsonObject.getString("desc");
         String artifact = jsonObject.getString("artifact");
-        if ("认证成功".equals(desc)){
+        if ("认证成功".equals(desc)) {
             logger.info("认证成功：{}", phone);
-        }else {
-            logger.error("认证失败,返回信息为：{}", body6);
+        } else {
+            logger.error("认证失败");
         }
 
         CloseableHttpClient client13 = HttpClientBuilder.create().setDefaultCookieStore(cookieStore).build();
         HttpGet httpRequest13 = new HttpGet("https://shop.10086.cn/i/v1/auth/getArtifact?" +
                 "backUrl=https%3A%2F%2Fshop.10086.cn%2Fi%2F&" +
-                "artifact="+artifact+"&" +
+                "artifact=" + artifact + "&" +
                 "type=00");
 
         httpRequest13.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3");
@@ -296,20 +299,20 @@ public class YiDong {
         httpRequest13.setHeader("Sec-Fetch-Mode", "navigate");
 
         CloseableHttpResponse execute13 = client13.execute(httpRequest13);
-        logger.info(execute13.getStatusLine().getStatusCode()+"");
+        logger.info(execute13.getStatusLine().getStatusCode() + "");
         String body13 = EntityUtils.toString(execute13.getEntity(), "utf-8");
 
         CloseableHttpClient client11 = HttpClientBuilder.create().setDefaultCookieStore(cookieStore).build();
         HttpGet httpRequest11 = new HttpGet("https://shop.10086.cn/i/v1/cust/mergecust/" +
-                phone+"?" +
-                "_="+System.currentTimeMillis());
+                phone + "?" +
+                "_=" + System.currentTimeMillis());
 
         httpRequest11.setHeader("expires", "0");
         httpRequest11.setHeader("Accept", "application/json, text/javascript, */*; q=0.01");
         httpRequest11.setHeader("X-Requested-With", "XMLHttpRequest");
         httpRequest11.setHeader("Connection", "keep-alive");
         httpRequest11.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36");
-        httpRequest11.setHeader("Referer", "https://shop.10086.cn/i/?f=home&welcome="+System.currentTimeMillis());
+        httpRequest11.setHeader("Referer", "https://shop.10086.cn/i/?f=home&welcome=" + System.currentTimeMillis());
         httpRequest11.setHeader("Sec-Fetch-Site", "same-origin");
         httpRequest11.setHeader("Host", "shop.10086.cn");
         httpRequest11.setHeader("Accept-Encoding", "gzip, deflate, br");

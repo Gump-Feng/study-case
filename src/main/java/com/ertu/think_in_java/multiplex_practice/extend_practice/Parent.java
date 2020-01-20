@@ -8,6 +8,6 @@ public class Parent extends Person {
 
     public Parent(int i) {
         super(i);
-        System.out.println("家长："+i);
+        System.out.println("家长：" + i);
     }
 }

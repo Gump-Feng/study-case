@@ -22,7 +22,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             byte[] req = new byte[buf.readableBytes()];
             buf.readBytes(req);
             String body = new String(req, "utf-8");
-            System.out.println("Client :" + body.length() );
+            System.out.println("Client :" + body.length());
             String response = "收到服务器端的返回信息：" + body.length();
             System.out.println(response);
         } finally {

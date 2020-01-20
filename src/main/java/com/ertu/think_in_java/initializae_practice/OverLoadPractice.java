@@ -10,10 +10,11 @@ public class OverLoadPractice {
         add((short) 100);
     }
 
-    private static void add(){
+    private static void add() {
 
     }
-    private static void add(short b){
+
+    private static void add(short b) {
         System.out.println(b);
     }
 //    private static void add(long l){

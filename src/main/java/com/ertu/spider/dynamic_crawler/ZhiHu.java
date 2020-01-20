@@ -22,7 +22,7 @@ public class ZhiHu {
         System.out.println(cookieStore);
     }
 
-    private static CookieStore preLogin(){
+    private static CookieStore preLogin() {
         CookieStore cookieStore = new BasicCookieStore();
         CloseableHttpClient sslClientDefault = HttpClientUtils.createSSLClientDefault(cookieStore);
 

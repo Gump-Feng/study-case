@@ -20,10 +20,10 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
         ByteBuf buf = (ByteBuf) msg;
         byte[] req = new byte[buf.readableBytes()];
         buf.readBytes(req);
-        FileUtils.writeByteArrayToFile(new File("C:\\Users\\houxf\\Desktop\\netty_file\\server\\https-demo.jar"),req);
+        FileUtils.writeByteArrayToFile(new File("C:\\Users\\houxf\\Desktop\\netty_file\\server\\https-demo.jar"), req);
         String body = new String(req, StandardCharsets.UTF_8);
-        System.out.println("server :" + body.length() );
-        String response = "进行返回给客户端的响应：" + body ;
+        System.out.println("server :" + body.length());
+        String response = "进行返回给客户端的响应：" + body;
         ctx.writeAndFlush(Unpooled.copiedBuffer(response.getBytes()));
         //接收到客户端的数据立马断掉客户端连接 服务端还是启动着
         //.addListener(ChannelFutureListener.CLOSE);

@@ -16,7 +16,7 @@ public class Mouse extends AbstractRodent {
 //        System.out.println("导出类打印："+2);
 //    }`
 
-    public void eat(){
-        System.out.println("导出类打印："+2);
+    public void eat() {
+        System.out.println("导出类打印：" + 2);
     }
 }

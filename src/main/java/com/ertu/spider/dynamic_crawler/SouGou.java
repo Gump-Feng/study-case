@@ -34,12 +34,12 @@ public class SouGou {
         String souSuoContent = getSouSuoContent(content, cookieStore);
         Html html = new Html(souSuoContent);
         Selectable urlSelects = html.xpath("//div[@class=\"txt-box\"]/p[@class=\"tit\"]/a/@href");
-        if (urlSelects != null){
+        if (urlSelects != null) {
             List<String> stringList = urlSelects.all();
             for (String url : stringList
-                 ) {
-                System.out.println("公众号链接为："+preUrtl+url);
-                getPublicContent(preUrtl+url, cookieStore);
+            ) {
+                System.out.println("公众号链接为：" + preUrtl + url);
+                getPublicContent(preUrtl + url, cookieStore);
             }
         }
 

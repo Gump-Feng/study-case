@@ -17,7 +17,7 @@ import java.util.UUID;
 /**
  * @author hxf
  * @date 2019/6/8 22:04
- *
+ * <p>
  * http-post的抓取练习
  */
 public class PostDemo {
@@ -28,7 +28,7 @@ public class PostDemo {
 //        crawl();
     }
 
-    private static String crawl(){
+    private static String crawl() {
         String url = "http://httpbin.org/post";
         CloseableHttpClient httpClient = HttpClientUtils.createSSLClientDefault();
         HttpPost post = new HttpPost("");
@@ -63,7 +63,7 @@ public class PostDemo {
     }
 
     // 构建唯一会话Id
-    private static String getSessionId(){
+    private static String getSessionId() {
         UUID uuid = UUID.randomUUID();
         String str = uuid.toString();
         return str.substring(0, 8) + str.substring(9, 13) + str.substring(14, 18) + str.substring(19, 23) + str.substring(24);

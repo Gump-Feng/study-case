@@ -40,7 +40,7 @@ public class HttpTests {
         Elements select = parse.select(".news_body > p");
         Element element = select.get(select.size() - 2);
 
-        System.out.println("content："+element.html());
+        System.out.println("content：" + element.html());
     }
 
     @Test
@@ -54,7 +54,7 @@ public class HttpTests {
         Document document = new Html(content).getDocument();
         Elements select = document.select(".news_body > p");
         select.get(select.size() - 2).remove();
-        FileUtils.writeStringToFile(new File("C:\\Users\\houxf\\Desktop\\test.html"),document.toString());
+        FileUtils.writeStringToFile(new File("C:\\Users\\houxf\\Desktop\\test.html"), document.toString());
 
     }
 

@@ -8,7 +8,7 @@ public class Son extends Parent {
 
     public Son(int i) {
         super(i);
-        System.out.println("孩子："+i);
+        System.out.println("孩子：" + i);
     }
 
     public static void main(String[] args) {
