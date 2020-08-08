@@ -16,3 +16,5 @@ study-case.iml
 *.mvn/
 *.test/
 .idea/
+*.iml
+*.idea
