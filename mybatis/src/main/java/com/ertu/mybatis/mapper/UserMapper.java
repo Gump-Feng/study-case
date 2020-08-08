@@ -1,5 +1,7 @@
 package com.ertu.mybatis.mapper;
 
+import com.ertu.mybatis.bean.User;
+
 /**
  * @Description: java类作用描述
  * @Author: hxf
@@ -7,4 +9,6 @@ package com.ertu.mybatis.mapper;
  * @Version: 1.0
  */
 public interface UserMapper {
+
+    User getUserById(int id);
 }

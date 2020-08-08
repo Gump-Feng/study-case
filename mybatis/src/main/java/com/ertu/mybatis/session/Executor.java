@@ -7,4 +7,7 @@ package com.ertu.mybatis.session;
  * @Version: 1.0
  */
 public interface Executor {
+
+    <T> T query(String statement, Object parameter);
+
 }
