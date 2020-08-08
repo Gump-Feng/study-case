@@ -1,2 +1,3 @@
-# ertu_spider
-爬虫技能练习和算法练习
+# ertu_case
+## mybatis：自定义实现mybatis框架
+## reading：leetcode、think in java、netty等的阅读笔记
