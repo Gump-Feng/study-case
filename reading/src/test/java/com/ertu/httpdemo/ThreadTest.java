@@ -2,13 +2,7 @@ package com.ertu.httpdemo;
 
 
 import org.junit.Test;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,30 +13,6 @@ import java.util.Map;
  * @date 2019/4/16 22:55
  */
 public class ThreadTest {
-
-    public static void main(String[] args) {
-        DesiredCapabilities capability = new DesiredCapabilities();
-
-        capability.setBrowserName("chrome");
-
-        capability.setPlatform(Platform.WINDOWS);
-
-        try {
-            WebDriver driver = new RemoteWebDriver(new URL("http://192.168.1.4:4444/wd/hub"), capability);
-
-            driver.get("http://www.baidu.com");
-
-            driver.quit();
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-
-        }
-    }
-
-    public void threadTest(int i) {
-        System.out.println(i);
-    }
 
     @Test
     public void test() {
@@ -118,9 +88,6 @@ public class ThreadTest {
 
     @Test
     public void solution() {
-        
-
-
 
 
     }
