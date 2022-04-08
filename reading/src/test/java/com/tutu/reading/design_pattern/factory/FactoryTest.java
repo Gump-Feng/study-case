@@ -1,11 +1,6 @@
 package com.tutu.reading.design_pattern.factory;
 
-import com.tutu.reading.httpdemo.pojo.User;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * @Description: java类作用描述
@@ -44,15 +39,4 @@ public class FactoryTest {
         String s = String.valueOf(1);
     }
 
-    @Test
-    public void listTest() {
-        List<User> loggerList = new ArrayList<>();
-        loggerList.add(new User());
-        List<User> fileLoggers = Collections.unmodifiableList(loggerList);
-        if (!fileLoggers.isEmpty()) {
-            User user = fileLoggers.get(0);
-            System.out.println(user);
-            fileLoggers.clear();
-        }
-    }
 }
